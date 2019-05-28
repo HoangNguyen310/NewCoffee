@@ -1,0 +1,69 @@
+{% load static %}
+
+<header class="shop_header_area carousel_menu_area" style="border-bottom-style:solid; border-color:red">
+    <div class="carousel_top_header black_top_header row m0">
+        <div class="container">
+            <div class="carousel_top_h_inner">
+                <div class="float-md-left">
+                    <div class="top_header_middle">
+                        <a href="http://fb.com/NewCoffee138" target="blank" style="color:aqua; margin-right:10px"><i class="fa fa-facebook"></i> New Coffee </a>
+                        <a href="#" style="color:aqua; margin-right:10px"><i class="fa fa-phone"></i> 076 229 6277</a>
+                        <a href="#" style="color:aqua; margin-right:10px"><i class="fa fa-envelope"></i> nthoang31097@gmail.com </a>
+                    </div>
+                </div>
+                {% if user.username %}
+                <div class="float-md-right">
+                    <ul class="account_list">
+                        <li style="color:aqua">Chào, {{user.username}}</li>
+                        <li><a href="{% url 'user:logout' %}">Đăng xuất</a></li>
+                        {% if user.is_staff %}
+                        <li><a href="{% url 'admin:index' %}">Quản lý</a></li>
+                        {% endif %}
+                    </ul>
+                </div>
+                {% else %}
+                <div class="float-md-right">
+                    <ul class="account_list">
+                    <li><a href="{% url 'user:login' %}">Đăng nhập</a></li>
+                <li><a href="{% url 'user:register' %}">Đăng ký</a></li>
+                    </ul>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    <div class="carousel_menu_inner">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light" style="height:77px; padding-bottom:14px">
+                <a class="navbar-brand" href="/"><img src="{% static 'img/Logo.jpg' %}" alt=""></a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item"><a class="nav-link" href="{% url 'home:index' %}" style="color:red">Trang chủ</a></li>
+                        <li class="nav-item dropdown submenu">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Menu <i class="fa fa-angle-down" aria-hidden="true"></i>
+                            </a>
+                            <ul class="dropdown-menu">
+                                {% for item in category %}
+                                <li class="nav-item"><a class="nav-link" href="{% url 'product:product' item.id %}"> {{item.title}} </a></li>
+                                {% endfor %}
+                            </ul>
+                        </li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'home:about' %}">Giới thiệu</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'home:contact' %}">Liên hệ</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'cart:cart' %}">Giỏ hàng</a></li>
+                    </ul>
+                    <ul class="navbar-nav justify-content-end">
+                        <li class="search_icon"><a href="#"><i class="icon-magnifier icons"></i></a></li>
+                        <li class="user_icon"><a href="{% url 'user:info' %}"><i class="icon-user icons"></i></a></li>
+                        <li class="cart_cart"><a href="{% url 'cart:cart' %}"><i class="icon-handbag icons"></i></a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>

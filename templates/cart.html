@@ -1,0 +1,110 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<!--================Categories Banner Area =================-->
+<section class="categories_banner_area">
+    <div class="container">
+        <div class="c_banner_inner">
+            <h3>Giỏ hàng</h3>
+            <ul>
+                <li><a href="#">Trang chủ</a></li>
+                <li><a href="shopping-cart2.html">Giỏ hàng</a></li>
+            </ul>
+        </div>
+    </div>
+</section>
+<!--================End Categories Banner Area =================-->
+
+<!--================Shopping Cart Area =================-->
+<section class="shopping_cart_area p_100">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="cart_items">
+                    <h3>Giỏ hàng của bạn</h3>
+                    <div class="table-responsive-md">
+                        <table class="table">
+                            <tbody>
+                                <tr>
+                                    <th scope="row">
+                                        <img src="{% static 'img/icon/close-icon.png' %}" alt="">
+                                    </th>
+                                    <td>
+                                        <div class="media">
+                                            <div class="d-flex">
+                                                <img src="img/product/cart-product/cart-3.jpg" alt="">
+                                            </div>
+                                            <div class="media-body">
+                                                <h4>Round Sunglasses</h4>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td><p class="red">$150</p></td>
+                                    <td>
+                                        <div class="quantity">
+                                            <h6>Số lượng</h6>
+                                            <div class="custom">
+                                                <button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst ) &amp;&amp; sst > 0 ) result.value--;return false;" class="reduced items-count" type="button"><i class="icon_minus-06"></i></button>
+                                                <input type="text" name="qty" id="sst" maxlength="12" value="1" title="Quantity:" class="input-text qty">
+                                                <button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;" class="increase items-count" type="button"><i class="icon_plus"></i></button>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td><p>$150</p></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="cart_totals_area">
+                    <h4>Tổng cộng</h4>
+                    <div class="cart_t_list">
+                        <div class="media">
+                            <div class="d-flex">
+                                <h5>Tổng giá</h5>
+                            </div>
+                            <div class="media-body">
+                                <h6>50000 VNĐ</h6>
+                            </div>
+                        </div>
+                        <div class="media">
+                            <div class="d-flex">
+                                <h5>Phí ship</h5>
+                            </div>
+                            <div class="media-body">
+                                <h6>30000 VNĐ</h6>
+                            </div>
+                        </div>
+<!--                                <div class="media">-->
+<!--                                    <div class="d-flex">-->
+<!--                                    </div>-->
+<!--                                    <div class="media-body">-->
+<!--                                        <select class="selectpicker">-->
+<!--                                            <option>Hình thức thanh toán</option>-->
+<!--                                            <option>Bằng tiền mặt</option>-->
+<!--                                            <option>Bằng thẻ</option>-->
+<!--                                        </select>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+                    </div>
+                    <div class="total_amount row m0 row_disable">
+                        <div class="float-left">
+                            Thành tiền
+                        </div>
+                        <div class="float-right">
+                            80000 VNĐ
+                        </div>
+                    </div>
+                </div>
+                <a href="{% url 'cart:checkout' %}">
+                    <button type="button" value="submit" class="btn subs_btn form-control">Thanh toán</button>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+<!--================End Shopping Cart Area =================-->
+{% endblock %}
