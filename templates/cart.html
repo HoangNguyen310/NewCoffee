@@ -26,6 +26,7 @@
                     <div class="table-responsive-md">
                         <table class="table">
                             <tbody>
+                            {% for item in cart_item %}
                                 <tr>
                                     <th scope="row">
                                         <img src="{% static 'img/icon/close-icon.png' %}" alt="">
@@ -36,7 +37,7 @@
                                                 <img src="img/product/cart-product/cart-3.jpg" alt="">
                                             </div>
                                             <div class="media-body">
-                                                <h4>Round Sunglasses</h4>
+                                                <h4>{{ item.title }}</h4>
                                             </div>
                                         </div>
                                     </td>
@@ -53,6 +54,7 @@
                                     </td>
                                     <td><p>$150</p></td>
                                 </tr>
+                            {% endfor %}
                             </tbody>
                         </table>
                     </div>

@@ -163,7 +163,9 @@
                                         <div class="cate_{{ product.category_id }}">
                                             <div class="l_product_item">
                                                 <div class="l_p_img">
-                                                    <img class="img-fluid" src="media/{{ product.image }}" alt="" style="width:280px; height:360px">
+                                                    <a href="{% url 'product:detail' product.id %}">
+                                                        <img class="img-fluid" src="media/{{ product.image }}" alt="" style="width:280px; height:360px">
+                                                    </a>
                                                     {% if product.sale != 0 %}
                                                         <h5 class="sale">Giảm giá</h5>
                                                     {% endif %}
@@ -214,18 +216,20 @@
                                 </div>
                             </div>
                             <ul class="verticalCarouselGroup vc_list">
-                                {% for p in product %}
-                                    {% if p.sale > 0 %}
+                                {% for product in product %}
+                                    {% if product.sale > 0 %}
                                         <li>
-                                            <div class="media">
-                                                <div class="d-flex">
-                                                    <img src="media/{{ p.image }}" alt="" style="width:70px; height:90px">
+                                            <a href="{% url 'product:detail' product.id %}">
+                                                <div class="media">
+                                                    <div class="d-flex">
+                                                        <img src="media/{{ product.image }}" alt="" style="width:70px; height:90px">
+                                                    </div>
+                                                    <div class="media-body">
+                                                        <h4>{{ product.title }}</h4>
+                                                        <h5><del>{{ product.price }} VNĐ</del> {{ p.sale }} VNĐ</h5>
+                                                    </div>
                                                 </div>
-                                                <div class="media-body">
-                                                    <h4>{{ p.title }}</h4>
-                                                    <h5><del>{{ p.price }} VNĐ</del> {{ p.sale }} VNĐ</h5>
-                                                </div>
-                                            </div>
+                                            </a>
                                         </li>
                                     {% endif %}
                                 {% endfor %}
