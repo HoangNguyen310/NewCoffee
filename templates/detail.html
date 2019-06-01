@@ -23,7 +23,7 @@
                 <div class="product_details_slider">
                     <ul>
                         <li>
-                            <img src="/media/{{detail.image}}">
+                            <img src="/media/{{detail.image}}" style="width:370px; height:520px">
                         </li>
                     </ul>
                 </div>
@@ -66,11 +66,13 @@
                     </div>
                     <div class="quantity">
                         <div class="custom">
-                            <button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst ) &amp;&amp; sst > 0 ) result.value--;return false;" class="reduced items-count" type="button"><i class="icon_minus-06"></i></button>
-                            <input type="text" name="qty" id="sst" maxlength="12" value="01" title="Quantity:" class="input-text qty">
+                            <button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst ) &amp;&amp; sst > 0 ) result.value--;return false;" class="reduced items-count" type="button">
+                                <i class="icon_minus-06"></i>
+                            </button>
+                            <input type="text" name="qty" id="sst" maxlength="12" value="1" title="Quantity:" class="input-text qty">
                             <button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;" class="increase items-count" type="button"><i class="icon_plus"></i></button>
                         </div>
-                        <a class="add_cart_btn" href="#">add to cart</a>
+                        <a class="add_cart_btn" href="#">Thêm vào giỏ hàng</a>
                     </div>
                     <div class="shareing_icon">
                         <h5>share :</h5>

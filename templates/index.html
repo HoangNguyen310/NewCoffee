@@ -153,11 +153,8 @@
                     <div class="fillter_home_sidebar">
                         <div class="fillter_l_p_inner">
                             <ul class="fillter_l_p">
-                                <li class="active0." data-filter=".cate_1"><a href="#">Cà phê rang xay</a></li>
                                 {% for cate in category %}
-                                    {% if cate.active == 1 and cate.id > 1 %}
-                                        <li data-filter=".cate_{{ cate.id }}"><a href="#">{{ cate.title }}</a></li>
-                                    {% endif %}
+                                    <li data-filter=".cate_{{ cate.id }}"><a href="#">{{ cate.title }}</a></li>
                                 {% endfor %}
                             </ul>
                             <div class="row isotope_l_p_inner">
@@ -197,13 +194,11 @@
                 <div class="left_sidebar_area">
                     <aside class="l_widget l_categories_widget">
                         <div class="l_title">
-                            <h3>Menu</h3>
+                            <h3 style="font-family:initial">Menu</h3>
                         </div>
                         <ul>
                             {% for item in category %}
-                                {% if item.active == 1 %}
-                                    <li><a href="{% url 'product:product' item.id %}">{{item.title}}</a></li>
-                                {% endif %}
+                                <li><a href="{% url 'product:product' item.id %}" style="font-family:initial">{{ item.title }}</a></li>
                             {% endfor %}
                         </ul>
                     </aside>

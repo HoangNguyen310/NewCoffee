@@ -5,8 +5,8 @@ from product.models import Category, Product
 
 class HomeController(View):
     def get(self, request):
-        category = Category.objects.all()
-        product = Product.objects.all()
+        category = Category.objects.filter(active=1)
+        product = Product.objects.filter(active=1)
         return render(request, 'index.html', {
             'category': category,
             'product': product
@@ -20,7 +20,7 @@ class LoginController(View):
 
 class ContactController(View):
     def get(self, request):
-        category = Category.objects.all()
+        category = Category.objects.filter(active=1)
         return render(request, 'contact.html', {
             'category': category
         })
@@ -28,7 +28,7 @@ class ContactController(View):
 
 class AboutController(View):
     def get(self, request):
-        category = Category.objects.all()
+        category = Category.objects.filter(active=1)
         return render(request, 'about.html', {
             'category': category
         })

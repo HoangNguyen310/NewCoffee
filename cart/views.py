@@ -5,7 +5,7 @@ from product.models import Category
 
 class CartController(View):
     def get(self, request):
-        category = Category.objects.all()
+        category = Category.objects.filter(active=1)
         return render(request, 'cart.html', {
             'category': category
         })
@@ -13,7 +13,7 @@ class CartController(View):
 
 class CheckoutController(View):
     def get(self, request):
-        category = Category.objects.all()
+        category = Category.objects.filter(active=1)
         return render(request, 'checkout.html', {
             'category': category
         })
@@ -21,7 +21,7 @@ class CheckoutController(View):
 
 class PaymentController(View):
     def get(self, request):
-        category = Category.objects.all()
+        category = Category.objects.filter(active=1)
         return render(request, 'payment.html', {
             'category': category
         })

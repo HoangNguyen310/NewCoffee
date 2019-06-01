@@ -52,15 +52,15 @@ class InfoController(LoginRequiredMixin, View):
     def get(self, request):
         return render(request, 'info.html')
 
-    def post(request, user_username):
-        user = CustomerUser.objects.get(username=user_username)
+    def post(request, user_id):
+        user = CustomerUser.objects.get(username=user_id)
         user.username = request.POST.get('Username')
         user.email = request.POST.get('Email')
         user.phone = request.POST.get('Phone')
         user.address = request.POST.get('Address')
 
         try:
-            CustomerUser.save()
-            redirect('user:info')
+            user.save()
+            return redirect('user:info')
         except:
-            redirect('home:index')
+            return redirect('home:index')
