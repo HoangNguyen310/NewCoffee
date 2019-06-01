@@ -9,6 +9,7 @@ class ProductController(View):
         cate = Category.objects.get(id=category_id)
         product = cate.product_set.all()
         return render(request, 'product.html', {
+            'cate': cate,
             'product': product,
             'category': category
         })
