@@ -75,7 +75,7 @@
                             <input type="text" name="qty" id="sst" maxlength="12" value="1" title="Quantity:" class="input-text qty">
                             <button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;" class="increase items-count" type="button"><i class="icon_plus"></i></button>
                         </div>
-                        <a class="add_cart_btn" href="#">Thêm vào giỏ hàng</a>
+                        <a class="add_cart_btn" href="#" onclick="addCart({{ product.id }})">Thêm vào giỏ hàng</a>
                     </div>
                     <div class="shareing_icon">
                         <h5>share :</h5>
@@ -138,74 +138,28 @@
 <section class="related_product_area">
     <div class="container">
         <div class="related_product_inner">
-            <h2 class="single_c_title">Related Product</h2>
+            <h2 class="single_c_title">Sản phẩm liên quan</h2>
             <div class="row">
-                <div class="col-lg-3 col-sm-6">
-                    <div class="l_product_item">
-                        <div class="l_p_img">
-                            <img class="img-fluid" src="img/product/related-product/r-product-1.jpg" alt="">
+                {% for product in product %}
+                {% if product.category == detail.category and product.id != detail.id %}
+                        <div class="col-lg-3 col-sm-6">
+                            <div class="l_product_item">
+                                <div class="l_p_img">
+                                    <img class="img-fluid" src="/media/{{ product.image }}" alt="" style="width:270px; height:360px">
+                                </div>
+                                <div class="l_p_text">
+                                   <ul>
+                                        <li class="p_icon"><a href="#"><i class="icon_piechart"></i></a></li>
+                                        <li><a class="add_cart_btn" href="#" onclick="addCart({{ product.id }})">Mua</a></li>
+                                        <li class="p_icon"><a href="#"><i class="icon_heart_alt"></i></a></li>
+                                    </ul>
+                                    <h4>{{ product.title }}</h4>
+                                    <h5>{{ product.price|intcomma }} VNĐ</h5>
+                                </div>
+                            </div>
                         </div>
-                        <div class="l_p_text">
-                           <ul>
-                                <li class="p_icon"><a href="#"><i class="icon_piechart"></i></a></li>
-                                <li><a class="add_cart_btn" href="#">Add To Cart</a></li>
-                                <li class="p_icon"><a href="#"><i class="icon_heart_alt"></i></a></li>
-                            </ul>
-                            <h4>Run Tracksuit</h4>
-                            <h5>$85.50</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6">
-                    <div class="l_product_item">
-                        <div class="l_p_img">
-                            <img class="img-fluid" src="img/product/related-product/r-product-2.jpg" alt="">
-                            <h5 class="new">New</h5>
-                        </div>
-                        <div class="l_p_text">
-                           <ul>
-                                <li class="p_icon"><a href="#"><i class="icon_piechart"></i></a></li>
-                                <li><a class="add_cart_btn" href="#">Add To Cart</a></li>
-                                <li class="p_icon"><a href="#"><i class="icon_heart_alt"></i></a></li>
-                            </ul>
-                            <h4>Nike Men Trouser</h4>
-                            <h5><del>$130.50</del>  $110</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6">
-                    <div class="l_product_item">
-                        <div class="l_p_img">
-                            <img class="img-fluid" src="img/product/related-product/r-product-3.jpg" alt="">
-                        </div>
-                        <div class="l_p_text">
-                           <ul>
-                                <li class="p_icon"><a href="#"><i class="icon_piechart"></i></a></li>
-                                <li><a class="add_cart_btn" href="#">Add To Cart</a></li>
-                                <li class="p_icon"><a href="#"><i class="icon_heart_alt"></i></a></li>
-                            </ul>
-                            <h4>Nike Track Pants</h4>
-                            <h5>$250.00</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6">
-                    <div class="l_product_item">
-                        <div class="l_p_img">
-                            <img class="img-fluid" src="img/product/related-product/r-product-4.jpg" alt="">
-                            <h5 class="sale">Sale</h5>
-                        </div>
-                        <div class="l_p_text">
-                           <ul>
-                                <li class="p_icon"><a href="#"><i class="icon_piechart"></i></a></li>
-                                <li><a class="add_cart_btn" href="#">Add To Cart</a></li>
-                                <li class="p_icon"><a href="#"><i class="icon_heart_alt"></i></a></li>
-                            </ul>
-                            <h4>Therma Pants</h4>
-                            <h5>$45.50</h5>
-                        </div>
-                    </div>
-                </div>
+                {% endif %}
+                {% endfor %}
             </div>
             <nav aria-label="Page navigation example" class="pagination_area">
               <ul class="pagination">

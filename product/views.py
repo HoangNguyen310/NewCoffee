@@ -9,15 +9,17 @@ class ProductController(View):
         cate = Category.objects.get(id=category_id)
         product = cate.product_set.all()
         return render(request, 'product.html', {
+            'category': category,
             'cate': cate,
-            'product': product,
-            'category': category
+            'product': product
         })
 
     def detail(request, product_id):
         category = Category.objects.filter(active=1)
         detail = Product.objects.get(id=product_id)
+        product = Product.objects.all()
         return render(request, 'detail.html', {
             'detail': detail,
-            'category': category
+            'category': category,
+            'product': product
         })
