@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load humanize %}
 
 {% block content %}
 <section class="home_sidebar_area">
@@ -178,9 +179,9 @@
                                                     </ul>
                                                     <h4>{{ product.title }}</h4>
                                                     {% if product.sale > 0 %}
-                                                        <h5><del>{{ product.price }} VNĐ</del> {{ product.sale }} VNĐ</h5>
+                                                        <h5><del>{{ product.price|intcomma }} VNĐ</del> {{ product.sale|intcomma }} VNĐ</h5>
                                                     {% else %}
-                                                        <h5>{{ product.price }} VNĐ</h5>
+                                                        <h5>{{ product.price|intcomma }} VNĐ</h5>
                                                     {% endif %}
                                                 </div>
                                             </div>
@@ -226,7 +227,7 @@
                                                     </div>
                                                     <div class="media-body">
                                                         <h4>{{ product.title }}</h4>
-                                                        <h5><del>{{ product.price }} VNĐ</del> {{ p.sale }} VNĐ</h5>
+                                                        <h5><del>{{ product.price|intcomma }} VNĐ</del> {{ product.sale|intcomma }} VNĐ</h5>
                                                     </div>
                                                 </div>
                                             </a>

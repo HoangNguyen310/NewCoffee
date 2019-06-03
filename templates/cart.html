@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load humanize %}
 
 {% block content %}
 <!--================Categories Banner Area =================-->
@@ -41,18 +42,22 @@
                                             </div>
                                         </div>
                                     </td>
-                                    <td><p class="red">$150</p></td>
+                                    <td><p class="red">{{ item.price|intcomma }} VNĐ</p></td>
                                     <td>
                                         <div class="quantity">
                                             <h6>Số lượng</h6>
                                             <div class="custom">
-                                                <button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst ) &amp;&amp; sst > 0 ) result.value--;return false;" class="reduced items-count" type="button"><i class="icon_minus-06"></i></button>
-                                                <input type="text" name="qty" id="sst" maxlength="12" value="1" title="Quantity:" class="input-text qty">
-                                                <button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;" class="increase items-count" type="button"><i class="icon_plus"></i></button>
+                                                <button onclick="var result = document.getElementById('cart_{{ item.id }}'); var sst = result.value; if( !isNaN( sst ) &amp;&amp; sst > 0 ) result.value--;return false;" class="reduced items-count" type="button">
+                                                    <i class="icon_minus-06"></i>
+                                                </button>
+                                                <input type="text" name="qty" id="cart_{{ item.id }}" maxlength="12" value="1" title="Quantity:" class="input-text qty">
+                                                <button onclick="var result = document.getElementById('cart_{{ item.id }}'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;" class="increase items-count" type="button">
+                                                    <i class="icon_plus"></i>
+                                                </button>
                                             </div>
                                         </div>
                                     </td>
-                                    <td><p>$150</p></td>
+                                    <td><p>{{ item.price|intcomma }} VNĐ</p></td>
                                 </tr>
                             {% endfor %}
                             </tbody>
@@ -69,7 +74,7 @@
                                 <h5>Tổng giá</h5>
                             </div>
                             <div class="media-body">
-                                <h6>50000 VNĐ</h6>
+                                <h6>{{ total_price|intcomma }} VNĐ</h6>
                             </div>
                         </div>
                         <div class="media">
@@ -77,7 +82,7 @@
                                 <h5>Phí ship</h5>
                             </div>
                             <div class="media-body">
-                                <h6>30000 VNĐ</h6>
+                                <h6>{{ 30000|intcomma }} VNĐ</h6>
                             </div>
                         </div>
 <!--                                <div class="media">-->
@@ -97,7 +102,7 @@
                             Thành tiền
                         </div>
                         <div class="float-right">
-                            80000 VNĐ
+                            {{ all|intcomma }} VNĐ
                         </div>
                     </div>
                 </div>

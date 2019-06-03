@@ -9,17 +9,24 @@ class Cart(models.Model):
     update_at = models.DateTimeField(auto_now=True)
     total = models.IntegerField(default=0)
 
-    def __str__(self):
-        return self.user
+    # def __str__(self):
+    #     return self.user
 
 
 class CartItem(models.Model):
     cart = models.ForeignKey(Cart, on_delete=models.CASCADE)
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     price = models.IntegerField(default=0)
-    quantity = models.IntegerField(default=1)
+    quantity = models.IntegerField(default=0)
 
-    def __str__(self):
-        return self.title
+    # def __str__(self):
+    #     return self.cart
 
 
+# class Item(models.Model):
+#     product = models.CharField(max_length=100)
+#     price = models.IntegerField()
+#     quantity = models.IntegerField(default=0)
+#
+#     def __str__(self):
+#         return self.product

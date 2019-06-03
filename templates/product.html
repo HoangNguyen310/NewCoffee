@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load humanize %}
 
 {% block content %}
 <!--================Categories Banner Area =================-->
@@ -41,9 +42,9 @@
                                     </ul>
                                     <h4 id="product_name"> {{ item.title }} </h4>
                                     {% if item.sale > 0 %}
-                                        <h5 id="product_price"><del> {{item.price}} VNĐ</del> {{item.sale}} VNĐ </h5>
+                                        <h5 id="product_price"><del> {{ item.price|intcomma }} VNĐ</del> {{ item.sale|intcomma }} VNĐ </h5>
                                     {% else %}
-                                        <h5> {{item.price}} VNĐ </h5>
+                                        <h5> {{ item.price|intcomma }} VNĐ </h5>
                                     {% endif %}
 
                                 </div>

@@ -7,14 +7,16 @@ from cart.models import *
 class CartController(View):
     def get(self, request):
         category = Category.objects.filter(active=1)
-        return render(request, 'cart.html', {
-            'category': category
-        })
-
-    def cart(self, request):
         item = CartItem.objects.all()
+        total = 0
+        for i in item:
+            total = total + i.price
+        all = total + 30000
         return render(request, 'cart.html', {
-            'cart_item': item
+            'category': category,
+            'cart_item': item,
+            'total_price': total,
+            'all': all
         })
 
 
