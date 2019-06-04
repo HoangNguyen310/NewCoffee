@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<section class="emty_cart_area p_100">
+    <div class="container">
+        <div class="emty_cart_inner">
+            <i class="icon-handbag icons"></i>
+            <h3>Giỏ hàng rỗng</h3>
+            <h4>Tiếp tục <a href="{% url 'home:index' %}">mua sắm</a></h4>
+        </div>
+    </div>
+</section>
+{% endblock %}

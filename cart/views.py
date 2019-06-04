@@ -10,18 +10,21 @@ class CartController(View):
     def get(self, request):
         category = Category.objects.filter(active=1)
         total = 0
-        cart = request.session['cart']
-        for key, value in cart.items():
-            if int(value['sale']) > 0:
-                total += int(value['sale'])*int(value['quantity'])
-            else:
-                total += int(value['price'])*int(value['quantity'])
-        return render(request, 'cart.html', {
-            'category': category,
-            'total': total
-        })
+        try:
+            cart = request.session['cart']
+            for key, value in cart.items():
+                if int(value['sale']) > 0:
+                    total += int(value['sale'])*int(value['quantity'])
+                else:
+                    total += int(value['price'])*int(value['quantity'])
+            return render(request, 'cart.html', {
+                'category': category,
+                'total': total
+            })
+        except:
+            return render(request, 'emptycart.html')
 
-    def addcart(request):
+    def add_cart(request):
         if request.is_ajax():
             id = request.POST['id']
             num = request.POST['quantity']
@@ -43,11 +46,8 @@ class CartController(View):
 
             cart[id] = item
             request.session['cart'] = cart
-            cart_info = request.session['cart']
 
-        return render(request, 'addcart.html', {
-            'cart': cart_info
-        })
+        return render(request, 'addcart.html')
 
     def cart(request):
         category = Category.objects.filter(active=1)
