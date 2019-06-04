@@ -79,5 +79,16 @@
     <!-- comment facebook -->
     <div id="fb-root"></div>
     <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v3.3"></script>
+    <script>
+        $(document).ready(function() {
+
+        })
+        function addCart(id) {
+            quantity = $("#number").val() || 1;
+            $.post('/addcart/ ', {'id': id, 'quantity': quantity, 'csrfmiddlewaretoken':'{{ csrf_token }}'}, function(data) {
+                alert("Sản phẩm đã được thêm vào giỏ hàng")
+            })
+        }
+    </script>
     </body>
 </html>

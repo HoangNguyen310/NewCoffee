@@ -69,13 +69,13 @@
                     </div>
                     <div class="quantity">
                         <div class="custom">
-                            <button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst ) &amp;&amp; sst > 0 ) result.value--;return false;" class="reduced items-count" type="button">
+                            <button onclick="var result = document.getElementById('number'); var number = result.value; if( !isNaN( number ) &amp;&amp; number > 0 ) result.value--;return false;" class="reduced items-count" type="button">
                                 <i class="icon_minus-06"></i>
                             </button>
-                            <input type="text" name="qty" id="sst" maxlength="12" value="1" title="Quantity:" class="input-text qty">
-                            <button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;" class="increase items-count" type="button"><i class="icon_plus"></i></button>
+                            <input type="text" name="qty" id="number" maxlength="12" value="1" title="Quantity:" class="input-text qty">
+                            <button onclick="var result = document.getElementById('number'); var number = result.value; if( !isNaN( number )) result.value++;return false;" class="increase items-count" type="button"><i class="icon_plus"></i></button>
                         </div>
-                        <a class="add_cart_btn" href="#" onclick="addCart({{ product.id }})">Thêm vào giỏ hàng</a>
+                        <a class="add_cart_btn" href="#" onclick="addCart({{ detail.id }})">Thêm vào giỏ hàng</a>
                     </div>
                     <div class="shareing_icon">
                         <h5>share :</h5>
@@ -145,7 +145,7 @@
                         <div class="col-lg-3 col-sm-6">
                             <div class="l_product_item">
                                 <div class="l_p_img">
-                                    <img class="img-fluid" src="/media/{{ product.image }}" alt="" style="width:270px; height:360px">
+                                    <a href="{% url 'product:detail' product.id %}"><img class="img-fluid" src="/media/{{ product.image }}" alt="" style="width:270px; height:360px"></a>
                                 </div>
                                 <div class="l_p_text">
                                    <ul>

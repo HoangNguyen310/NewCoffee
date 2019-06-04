@@ -10,8 +10,8 @@ class LoginController(View):
         return render(request, 'login.html')
 
     def post(self, request):
-        username = request.POST.get('Username')
-        password = request.POST.get('Password')
+        username = request.POST['Username']
+        password = request.POST['Password']
         user = authenticate(username=username, password=password)
         if user is None:
             return redirect('user:login')
@@ -31,11 +31,11 @@ class RegisterController(View):
         return render(request, 'register.html')
 
     def post(self, request):
-        username = request.POST.get('Username')
-        email = request.POST.get('Email')
-        password = request.POST.get('Password')
-        phone = request.POST.get('Phone')
-        address = request.POST.get('Address')
+        username = request.POST['Username']
+        email = request.POST['Email']
+        password = request.POST['Password']
+        phone = request.POST['Phone']
+        address = request.POST['Address']
 
         try:
             CustomerUser.objects.create_user(
@@ -54,10 +54,10 @@ class InfoController(LoginRequiredMixin, View):
 
     def post(request, user_id):
         user = CustomerUser.objects.get(username=user_id)
-        user.username = request.POST.get('Username')
-        user.email = request.POST.get('Email')
-        user.phone = request.POST.get('Phone')
-        user.address = request.POST.get('Address')
+        user.username = request.POST['Username']
+        user.email = request.POST['Email']
+        user.phone = request.POST['Phone']
+        user.address = request.POST['Address']
 
         try:
             user.save()

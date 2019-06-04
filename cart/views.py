@@ -3,21 +3,63 @@ from django.views import View
 from product.models import Category
 from cart.models import *
 
+cart = {}
+
 
 class CartController(View):
     def get(self, request):
         category = Category.objects.filter(active=1)
-        item = CartItem.objects.all()
         total = 0
-        for i in item:
-            total = total + i.price
-        all = total + 30000
+        cart = request.session['cart']
+        for key, value in cart.items():
+            if int(value['sale']) > 0:
+                total += int(value['sale'])*int(value['quantity'])
+            else:
+                total += int(value['price'])*int(value['quantity'])
         return render(request, 'cart.html', {
             'category': category,
-            'cart_item': item,
-            'total_price': total,
-            'all': all
+            'total': total
         })
+
+    def addcart(request):
+        if request.is_ajax():
+            id = request.POST['id']
+            num = request.POST['quantity']
+            product = Product.objects.get(id=id)
+            if id in cart.keys():
+                item = {
+                    'name': product.title,
+                    'price': product.price,
+                    'sale': product.sale,
+                    'quantity': int(cart[id]['quantity']) + int(num)
+                }
+            else:
+                item = {
+                    'name': product.title,
+                    'price': product.price,
+                    'sale': product.sale,
+                    'quantity': num
+                }
+
+            cart[id] = item
+            request.session['cart'] = cart
+            cart_info = request.session['cart']
+
+        return render(request, 'addcart.html', {
+            'cart': cart_info
+        })
+
+    def cart(request):
+        category = Category.objects.filter(active=1)
+        total = 0
+        cart = request.session['cart']
+        for key, value in cart:
+            total += int(value['price'])*int(value['quantity'])
+        return render(request, 'cart.html', {
+            'category': category,
+            'total': total
+        })
+
 
 
 class CheckoutController(View):

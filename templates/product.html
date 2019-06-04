@@ -22,15 +22,15 @@
     <div class="container">
         <div class="two_column_product">
             <div class="row">
-                {% for item in product %}
-                    {% if item.active == 1 %}
+                {% for product in product %}
+                    {% if product.active == 1 %}
                         <div class="col-lg-3 col-sm-6">
                             <div class="l_product_item">
                                 <div class="l_p_img">
-                                    <a href="{% url 'product:detail' item.id %}">
-                                        <img class="img-fluid" src="/media/{{item.image}}" alt="" style="width:270px; height:360px">
+                                    <a href="{% url 'product:detail' product.id %}">
+                                        <img class="img-fluid" src="/media/{{product.image}}" alt="" style="width:270px; height:360px">
                                     </a>
-                                    {% if item.sale > 0 %}
+                                    {% if product.sale > 0 %}
                                         <h5 class="sale">Sale off 10%</h5>
                                     {% endif %}
                                 </div>
@@ -40,11 +40,11 @@
                                         <li><a class="add_cart_btn" href="#" onclick="addCart({{ product.id }})">Mua</a></li>
                                         <li class="p_icon"><a href="#"><i class="icon_heart_alt"></i></a></li>
                                     </ul>
-                                    <h4 id="product_name"> {{ item.title }} </h4>
-                                    {% if item.sale > 0 %}
-                                        <h5 id="product_price"><del> {{ item.price|intcomma }} VNĐ</del> {{ item.sale|intcomma }} VNĐ </h5>
+                                    <h4 id="product_name"> {{ product.title }} </h4>
+                                    {% if product.sale > 0 %}
+                                        <h5 id="product_price"><del> {{ product.price|intcomma }} VNĐ</del> {{ product.sale|intcomma }} VNĐ </h5>
                                     {% else %}
-                                        <h5> {{ item.price|intcomma }} VNĐ </h5>
+                                        <h5> {{ product.price|intcomma }} VNĐ </h5>
                                     {% endif %}
 
                                 </div>
