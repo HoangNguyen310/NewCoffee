@@ -44,10 +44,13 @@ class CartController(View):
                     'quantity': num
                 }
 
-            cart[id] = item
-            request.session['cart'] = cart
+        cart[id] = item
+        request.session['cart'] = cart
 
         return render(request, 'addcart.html')
+
+    def del_cart(request):
+        pass
 
     def cart(request):
         category = Category.objects.filter(active=1)

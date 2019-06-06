@@ -1,8 +1,9 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, HttpResponse
 from django.views import View
 from django.contrib.auth import authenticate, login, logout
 from user.models import CustomerUser
 from django.contrib.auth.mixins import LoginRequiredMixin
+from product.models import Product
 
 
 class LoginController(View):
@@ -52,15 +53,15 @@ class InfoController(LoginRequiredMixin, View):
     def get(self, request):
         return render(request, 'info.html')
 
-    def post(request, user_id):
-        user = CustomerUser.objects.get(username=user_id)
-        user.username = request.POST['Username']
-        user.email = request.POST['Email']
-        user.phone = request.POST['Phone']
-        user.address = request.POST['Address']
+    def post(request):
+        user = request.user
+        email = request.POST['Email']
+        phone = request.POST['Phone']
+        address = request.POST['Address']
 
-        try:
-            user.save()
-            return redirect('user:info')
-        except:
-            return redirect('home:index')
+        user.email = email
+        user.phone = phone
+        user.address = address
+
+        user.save()
+        return redirect('user:info')

@@ -27,7 +27,7 @@
     <div class="book-appointment">
         <h2>Thông tin người dùng</h2>
         <div class="book-form agileits-login">
-            <form action="" method="POST">
+            <form action="{% url 'user:update_info' %}" method="POST">
                 {% csrf_token %}
                 <div class="agileits_reservation_grid">
                     <div class="phone_email">
