@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load humanize %}
+
+{% block content %}
+<!--================Categories Banner Area =================-->
+<section class="categories_banner_area">
+    <div class="container">
+        <div class="c_banner_inner">
+            <h3>New Coffee</h3>
+            <ul>
+                <li class="current"><a href="{% url 'home:index' %}">Trang chủ</a></li>
+                <li class="current"><a href="#">All</a></li>
+            </ul>
+        </div>
+    </div>
+</section>
+<!--================End Categories Banner Area =================-->
+
+<!--================Categories Product Area =================-->
+<section class="no_sidebar_2column_area">
+    <div class="container">
+        <div class="two_column_product">
+            <div class="row">
+                {% for product in product %}
+                    {% if product.active == 1 %}
+                        <div class="col-lg-3 col-sm-6">
+                            <div class="l_product_item">
+                                <div class="l_p_img">
+                                    <a href="{% url 'product:detail' product.slug %}">
+                                        <img class="img-fluid" src="/media/{{product.image}}" alt="" style="width:270px; height:360px">
+                                    </a>
+                                    {% if product.sale > 0 %}
+                                        <h5 class="sale">Sale off 10%</h5>
+                                    {% endif %}
+                                </div>
+                                <div class="l_p_text">
+                                   <ul>
+                                        <li class="p_icon"><a href="#"><i class="icon_piechart"></i></a></li>
+                                        <li><a class="add_cart_btn" href="#" onclick="addCart({{ product.id }})">Mua</a></li>
+                                        <li class="p_icon"><a href="#"><i class="icon_heart_alt"></i></a></li>
+                                    </ul>
+                                    <h4 id="product_name"> {{ product.title }} </h4>
+                                    {% if product.sale > 0 %}
+                                        <h5 id="product_price"><del> {{ product.price|intcomma }} VNĐ</del> {{ product.sale|intcomma }} VNĐ </h5>
+                                    {% else %}
+                                        <h5> {{ product.price|intcomma }} VNĐ </h5>
+                                    {% endif %}
+
+                                </div>
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+            <nav aria-label="Page navigation example" class="pagination_area">
+                <ul class="pagination">
+                    {% if product.has_previous %}
+                        <li class="page-item next"><a class="page-link" href="?page={{product.previous_page_number}}"><i class="fa fa-angle-left" aria-hidden="true"></i></a></li>
+                    {% else %}
+                        <li class="page-item next disable"><a class="page-link" href="#"><i class="fa fa-angle-left" aria-hidden="true"></i></a></li>
+                    {% endif %}
+
+                    {% for i in product.paginator.page_range %}
+                        {% if product.number == i %}
+                            <li class="page-item active"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+                        {% else %}
+                            <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+                        {% endif %}
+                    {% endfor %}
+
+                    {% if product.has_next %}
+                        <li class="page-item next"><a class="page-link" href="?page={{product.next_page_number}}"><i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
+                    {% endif %}
+                </ul>
+            </nav>
+        </div>
+    </div>
+</section>
+<!--================End Categories Product Area =================-->
+{% endblock %}

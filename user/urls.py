@@ -8,5 +8,5 @@ urlpatterns = [
     path('logout/', LogoutController.as_view(), name='logout'),
     path('register/', RegisterController.as_view(), name='register'),
     path('info/', InfoController.as_view(), name='info'),
-    path('update_info', InfoController.post, name='update_info')
+    path('update_info/', InfoController.post, name='update_info')
 ]
