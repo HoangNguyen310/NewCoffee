@@ -27,7 +27,7 @@
                         <div class="col-lg-3 col-sm-6">
                             <div class="l_product_item">
                                 <div class="l_p_img">
-                                    <a href="{% url 'product:detail' product.id %}">
+                                    <a href="{% url 'product:detail' product.slug %}">
                                         <img class="img-fluid" src="/media/{{product.image}}" alt="" style="width:270px; height:360px">
                                     </a>
                                     {% if product.sale > 0 %}

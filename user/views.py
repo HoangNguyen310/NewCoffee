@@ -1,9 +1,8 @@
-from django.shortcuts import render, redirect, HttpResponse
+from django.shortcuts import render, redirect
 from django.views import View
 from django.contrib.auth import authenticate, login, logout
 from user.models import CustomerUser
 from django.contrib.auth.mixins import LoginRequiredMixin
-from product.models import Product
 
 
 class LoginController(View):

@@ -7,9 +7,19 @@ class HomeController(View):
     def get(self, request):
         category = Category.objects.filter(active=1)
         product = Product.objects.filter(active=1)
+
+        quantity = 0
+        try:
+            cart = request.session['cart']
+            for key, value in cart.items():
+                quantity += int(value['quantity'])
+        except:
+            pass
+
         return render(request, 'index.html', {
             'category': category,
-            'product': product
+            'product': product,
+            'cart_quantity': quantity
         })
 
 
@@ -21,14 +31,34 @@ class LoginController(View):
 class ContactController(View):
     def get(self, request):
         category = Category.objects.filter(active=1)
+
+        quantity = 0
+        try:
+            cart = request.session['cart']
+            for key, value in cart.items():
+                quantity += int(value['quantity'])
+        except:
+            pass
+
         return render(request, 'contact.html', {
-            'category': category
+            'category': category,
+            'cart_quantity': quantity
         })
 
 
 class AboutController(View):
     def get(self, request):
         category = Category.objects.filter(active=1)
+
+        quantity = 0
+        try:
+            cart = request.session['cart']
+            for key, value in cart.items():
+                quantity += int(value['quantity'])
+        except:
+            pass
+
         return render(request, 'about.html', {
-            'category': category
+            'category': category,
+            'cart_quantity': quantity
         })

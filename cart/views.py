@@ -9,6 +9,15 @@ cart = {}
 class CartController(View):
     def get(self, request):
         category = Category.objects.filter(active=1)
+
+        quantity = 0
+        try:
+            cart = request.session['cart']
+            for key, value in cart.items():
+                quantity += int(value['quantity'])
+        except:
+            pass
+
         total = 0
         try:
             cart = request.session['cart']
@@ -19,10 +28,14 @@ class CartController(View):
                     total += int(value['price'])*int(value['quantity'])
             return render(request, 'cart.html', {
                 'category': category,
-                'total': total
+                'cart_quantity': quantity,
+                'total': total,
             })
         except:
-            return render(request, 'emptycart.html')
+            return render(request, 'emptycart.html', {
+                'category': category,
+                'cart_quantity': quantity
+            })
 
     def add_cart(request):
         if request.is_ajax():

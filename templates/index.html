@@ -131,7 +131,7 @@
                         <div class="feature_inner row m0">
                             <div class="left_promotion">
                                 <div class="f_add_item">
-                                    <div class="f_add_img"><img class="img-fluid" src="{% static 'img/home-slider/Ads-3.jpg'%}" alt=""></div>
+                                    <div class="f_add_img"><img class="img-fluid" src="{% static 'img/home-slider/Ads-3.jpg' %}" alt=""></div>
                                     <div class="f_add_hover">
                                         <div class="sale">Sale</div>
                                         <h4>Best Sale</h4>
@@ -141,7 +141,7 @@
                             </div>
                             <div class="right_promotion">
                                 <div class="f_add_item right_dir">
-                                    <div class="f_add_img"><img class="img-fluid" src="{% static 'img/home-slider/Ads.jpg'%}" alt=""></div>
+                                    <div class="f_add_img"><img class="img-fluid" src="{% static 'img/home-slider/Ads.jpg' %}" alt=""></div>
                                     <div class="f_add_hover">
                                         <div class="off">Giảm 10%</div>
                                         <h4>Best Sale</h4>
@@ -164,7 +164,7 @@
                                         <div class="cate_{{ product.category_id }}">
                                             <div class="l_product_item">
                                                 <div class="l_p_img">
-                                                    <a href="{% url 'product:detail' product.id %}">
+                                                    <a href="{% url 'product:detail' product.slug %}">
                                                         <img class="img-fluid" src="media/{{ product.image }}" alt="" style="width:280px; height:360px">
                                                     </a>
                                                     {% if product.sale != 0 %}
@@ -201,7 +201,7 @@
                         </div>
                         <ul>
                             {% for item in category %}
-                                <li><a href="{% url 'product:product' item.id %}" style="font-family:initial">{{ item.title }}</a></li>
+                                <li><a href="{% url 'product:product' item.slug %}" style="font-family:initial">{{ item.title }}</a></li>
                             {% endfor %}
                         </ul>
                     </aside>
@@ -220,14 +220,14 @@
                                 {% for product in product %}
                                     {% if product.sale > 0 %}
                                         <li>
-                                            <a href="{% url 'product:detail' product.id %}">
+                                            <a href="{% url 'product:detail' product.slug %}">
                                                 <div class="media">
                                                     <div class="d-flex">
                                                         <img src="media/{{ product.image }}" alt="" style="width:70px; height:90px">
                                                     </div>
                                                     <div class="media-body">
                                                         <h4>{{ product.title }}</h4>
-                                                        <h5><del>{{ product.price|intcomma }} VNĐ</del> {{ product.sale|intcomma }} VNĐ</h5>
+                                                        <h5><del style="color:#666666">{{ product.price|intcomma }} VNĐ</del> {{ product.sale|intcomma }} VNĐ</h5>
                                                     </div>
                                                 </div>
                                             </a>
