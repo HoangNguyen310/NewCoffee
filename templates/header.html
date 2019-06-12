@@ -16,6 +16,10 @@
   background: #d91522;
   line-height: 20px;
 }
+
+
+
+
 </style>
 
 <header class="shop_header_area carousel_menu_area" style="border-bottom-style:solid; border-color:red">
@@ -24,9 +28,10 @@
             <div class="carousel_top_h_inner">
                 <div class="float-md-left">
                     <div class="top_header_middle">
-                        <a href="http://fb.com/NewCoffee138" target="blank" style="color:aqua; margin-right:10px"><i class="fa fa-facebook"></i> New Coffee </a>
-                        <a href="#" style="color:aqua; margin-right:10px"><i class="fa fa-phone"></i> 076 229 6277</a>
-                        <a href="#" style="color:aqua; margin-right:10px"><i class="fa fa-envelope"></i> nthoang31097@gmail.com </a>
+                        <a href="http://fb.com/NewCoffee138" target="blank" style="color:aqua; margin-right:10px"><i
+                                class="fa fa-facebook"></i>New Coffee</a>
+                        <a href="#" style="color:aqua; margin-right:10px"><i class="fa fa-phone"></i>076 229 6277</a>
+                        <a href="#" style="color:aqua; margin-right:10px"><i class="fa fa-envelope"></i>nthoang31097@gmail.com</a>
                     </div>
                 </div>
                 {% if user.username %}
@@ -42,8 +47,14 @@
                 {% else %}
                 <div class="float-md-right">
                     <ul class="account_list">
-                    <li><a href="{% url 'user:login' %}">Đăng nhập</a></li>
-                <li><a href="{% url 'user:register' %}">Đăng ký</a></li>
+                        <li>
+                            <a href="{% url 'user:login' %}">Đăng nhập</a>
+<!--                            <a href="{% url 'user:login' %}" data-toggle="modal" data-target="#loginForm">Đăng nhập</a>-->
+                        </li>
+                        <li>
+                            <a href="{% url 'user:register' %}">Đăng ký</a>
+<!--                            <a href="{% url 'user:register' %}" data-toggle="modal" data-target="#registerForm">Đăng ký</a>-->
+                        </li>
                     </ul>
                 </div>
                 {% endif %}
@@ -54,16 +65,20 @@
         <div class="container">
             <nav class="navbar navbar-expand-lg navbar-light bg-light" style="height:77px; padding-bottom:14px">
                 <a class="navbar-brand" href="/"><img src="{% static 'img/Logo.jpg' %}" alt=""></a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
+                <button class="navbar-toggler" type="button" data-toggle="collapse"
+                        data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
 
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto">
-                        <li class="nav-item"><a class="nav-link" href="{% url 'home:index' %}" style="color:red">Trang chủ</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'home:index' %}" style="color:red">Trang
+                            chủ</a></li>
                         <li class="nav-item dropdown submenu">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Menu <i class="fa fa-angle-down" aria-hidden="true"></i>
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown"
+                               aria-haspopup="true" aria-expanded="false">
+                                Menu <i class="fa fa-angle-down" aria-hidden="true"></i>
                             </a>
                             <ul class="dropdown-menu">
                                 {% for item in category %}
@@ -78,12 +93,108 @@
                         <li class="nav-item"><a class="nav-link" href="{% url 'cart:cart' %}">Giỏ hàng</a></li>
                     </ul>
                     <ul class="navbar-nav justify-content-end">
-<!--                        <li class="search_icon"><a href="#"><i class="icon-magnifier icons"></i></a></li>-->
                         <li class="user_icon"><a href="{% url 'user:info' %}"><i class="icon-user icons"></i></a></li>
-                        <li class="cart_quantity"><a href="{% url 'cart:cart' %}"><i class="icon-handbag icons"></i></a></li>
+                        <li class="cart_quantity"><a href="{% url 'cart:cart' %}"><i class="icon-handbag icons"></i></a>
+                        </li>
                     </ul>
                 </div>
             </nav>
         </div>
     </div>
+<!--    &lt;!&ndash;================ Login Form =================&ndash;&gt;-->
+<!--    <div class="modal fade" id="loginForm" tabindex="-1" role="dialog" aria-labelledby="login"-->
+<!--         aria-hidden="true">-->
+<!--        <div class="modal-dialog" role="document">-->
+<!--            <div class="modal-content w3l-login-form">-->
+<!--                <div class="modal-body ">-->
+<!--                    <h1><span style="color:red">N</span>ew <span style="color:red">C</span>offee</h1>-->
+<!--                    <form action="" method="POST">-->
+<!--                        {% csrf_token %}-->
+<!--                        <div class=" w3l-form-group">-->
+<!--                            <label>Tên đăng nhập:</label>-->
+<!--                            <div class="group">-->
+<!--                                <i class="fa fa-user"></i>-->
+<!--                                <input type="text" id="Username" class="form-control" placeholder="Nhập tên đăng nhập" required="required" name="Username"/>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <div class=" w3l-form-group">-->
+<!--                            <label>Mật khẩu:</label>-->
+<!--                            <div class="group">-->
+<!--                                <i class="fa fa-unlock"></i>-->
+<!--                                <input type="password" id="Password" class="form-control" placeholder="Nhập mật khẩu" required="required" name="Password"/>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <div class="forgot">-->
+<!--                            <a href="#">Quên mật khẩu?</a>-->
+<!--                        </div>-->
+<!--                        <button type="button" id="btnLogin" class="button">Đăng nhập</button>-->
+<!--                    </form>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--    &lt;!&ndash;================ End Login Form =================&ndash;&gt;-->
+
+<!--    &lt;!&ndash;================ Register Form =================&ndash;&gt;-->
+<!--    <div class="modal fade" id="registerForm" tabindex="-1" role="dialog" aria-labelledby="register"-->
+<!--         aria-hidden="true">-->
+<!--        <div class="modal-dialog" role="document">-->
+<!--            <div class="modal-content w3l-login-form">-->
+<!--                <div class="modal-body ">-->
+<!--                    <h1><span style="color:red">N</span>ew <span style="color:red">C</span>offee</h1>-->
+<!--                    <form action="" method="POST">-->
+<!--                        {% csrf_token %}-->
+<!--                        <div class=" w3l-form-group">-->
+<!--                            <label>Tên đăng nhập:</label>-->
+<!--                            <div class="group">-->
+<!--                                <i class="fa fa-user"></i>-->
+<!--                                <input type="text" class="form-control" placeholder="Tên đăng nhập" required="required"-->
+<!--                                       name="Username"/>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <div class=" w3l-form-group">-->
+<!--                            <label>Email:</label>-->
+<!--                            <div class="group">-->
+<!--                                <i class="fa fa-envelope"></i>-->
+<!--                                <input type="text" class="form-control" placeholder="Nhập email" required=""-->
+<!--                                       name="Email"/>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <div class=" w3l-form-group">-->
+<!--                            <label>Số điện thoại:</label>-->
+<!--                            <div class="group">-->
+<!--                                <i class="fa fa-phone"></i>-->
+<!--                                <input type="text" class="form-control" placeholder="Nhập số điện thoại" name="Phone"/>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <div class=" w3l-form-group">-->
+<!--                            <label>Địa chỉ:</label>-->
+<!--                            <div class="group">-->
+<!--                                <i class="fa fa-map"></i>-->
+<!--                                <input type="text" class="form-control" placeholder="Nhập địa chỉ" name="Address"/>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <div class=" w3l-form-group">-->
+<!--                            <label>Mật khẩu:</label>-->
+<!--                            <div class="group">-->
+<!--                                <i class="fa fa-unlock"></i>-->
+<!--                                <input type="password" id="password1" class="form-control" placeholder="Nhập mật khẩu"-->
+<!--                                       required="required" name="Password"/>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <div class=" w3l-form-group">-->
+<!--                            <label>Nhập lại mật khẩu:</label>-->
+<!--                            <div class="group">-->
+<!--                                <i class="fa fa-unlock"></i>-->
+<!--                                <input type="password" id="password2" class="form-control"-->
+<!--                                       placeholder="Nhập lại mật khẩu" required="required" name="Confirm_Password"/>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <button class="button" type="submit">Đăng ký</button>-->
+<!--                    </form>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--    &lt;!&ndash;================ End Register Form =================&ndash;&gt;-->
 </header>

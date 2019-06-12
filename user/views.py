@@ -54,10 +54,14 @@ class InfoController(LoginRequiredMixin, View):
 
     def post(request):
         user = request.user
+        fname = request.POST['Firstname']
+        lname = request.POST['Lastname']
         email = request.POST['Email']
         phone = request.POST['Phone']
         address = request.POST['Address']
 
+        user.first_name = fname
+        user.last_name = lname
         user.email = email
         user.phone = phone
         user.address = address

@@ -23,7 +23,7 @@
     <!-- /google fonts-->
 
 </head>
-<body class="body">
+<body class="">
     <a href="{% url 'home:index' %}">
         <h1>
             <span style="color:red">N</span>ew <span style="color:red">C</span>offee
@@ -51,7 +51,7 @@
                 <a href="#">Quên mật khẩu?</a>
                 <p><input type="checkbox">Lưu mật khẩu</p>
             </div>
-            <button type="submit">Đăng nhập</button>
+            <button class="button" type="submit">Đăng nhập</button>
         </form>
         <p class=" w3l-register-p">Chưa có tài khoản?<a href="{% url 'user:register' %}" class="register"> Đăng ký </a></p>
     </div>

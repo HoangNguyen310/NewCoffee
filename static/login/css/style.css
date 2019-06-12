@@ -44,14 +44,14 @@ p.w3l-register-p {
 
 .group {
     display: flex;
-    padding: 15px 5px;
+    padding: 5px;
     background-color: #ffffff;
 }
 
 .group i {
     color: #fc3955;
     font-size: 20px;
-    padding: 0 10px;
+    padding: 6px 10px;
 }
 
 .w3l-form-group {
@@ -64,8 +64,8 @@ p.w3l-register-p {
     font-size: 13px;
     color: #d2d2d2;
     letter-spacing: 2px;
-    margin-bottom: 10px;
     font-style: italic;
+    padding-bottom: 10px;
 }
 
 input[type="text"],
@@ -82,7 +82,7 @@ input[type="password"]:focus {
     outline: none;
 }
 
-button {
+.button {
     background: #fc3955;
     color: #ffffff;
     font-size: 13px;
@@ -95,9 +95,9 @@ button {
     border-radius: 6px;
 }
 
-button:hover {
+.button:hover {
     background-color: #00BCD4;
-    transition-duration: 5s;
+    transition-duration: 0s;
 }
 
 .forgot {

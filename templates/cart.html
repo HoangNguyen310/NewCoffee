@@ -30,14 +30,11 @@
                             <tbody>
                             {% for key, value in request.session.cart.items %}
                                 <tr>
-                                    <th scope="row">
+                                    <th scope="row" onclick="removeCart({{ key }})">
                                         <img src="{% static 'img/icon/close-icon.png' %}" alt="">
                                     </th>
                                     <td>
                                         <div class="media">
-                                            <div class="d-flex">
-                                                <img src="img/product/cart-product/cart-3.jpg" alt="">
-                                            </div>
                                             <div class="media-body">
                                                 <h4>{{ value.name }}</h4>
                                             </div>
@@ -51,12 +48,12 @@
                                     <td>
                                         <div class="quantity">
                                             <h6>Số lượng</h6>
-                                            <div class="custom">
-                                                <button onclick="var result = document.getElementById('cart_{{ item.id }}'); var sst = result.value; if( !isNaN( sst ) &amp;&amp; sst > 0 ) result.value--;return false;" class="reduced items-count" type="button">
+                                            <div class="custom custom-qty">
+                                                <button onclick="handle_quantity($(this), 'decrease');return false; return false;" class="reduced items-count" type="button">
                                                     <i class="icon_minus-06"></i>
                                                 </button>
-                                                <input type="text" name="qty" id="cart_{{ item.id }}" maxlength="12" value="{{ value.quantity }}" title="Quantity:" class="input-text qty">
-                                                <button onclick="var result = document.getElementById('cart_{{ item.id }}'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;" class="increase items-count" type="button">
+                                                <input type="text" name="qty" id="cart_{{ key }}" maxlength="12" value="{{ value.quantity }}" title="" class="input-text qty quantity" data-id = '{{ key }}'>
+                                                <button onclick="handle_quantity($(this), 'increase'); return false;" class="increase items-count" type="button">
                                                     <i class="icon_plus"></i>
                                                 </button>
                                             </div>
@@ -83,7 +80,7 @@
                                 <h5>Tổng giá</h5>
                             </div>
                             <div class="media-body">
-                                <h6>{{ total|intcomma }} VNĐ</h6>
+                                <h6 style="float:right">{{ total|intcomma }} VNĐ</h6>
                             </div>
                         </div>
                         <div class="media">
@@ -91,20 +88,9 @@
                                 <h5>Phí ship</h5>
                             </div>
                             <div class="media-body">
-                                <h6>{{ 30000|intcomma }} VNĐ</h6>
+                                <h6 style="float:right">{{ 30000|intcomma }} VNĐ</h6>
                             </div>
                         </div>
-<!--                                <div class="media">-->
-<!--                                    <div class="d-flex">-->
-<!--                                    </div>-->
-<!--                                    <div class="media-body">-->
-<!--                                        <select class="selectpicker">-->
-<!--                                            <option>Hình thức thanh toán</option>-->
-<!--                                            <option>Bằng tiền mặt</option>-->
-<!--                                            <option>Bằng thẻ</option>-->
-<!--                                        </select>-->
-<!--                                    </div>-->
-<!--                                </div>-->
                     </div>
                     <div class="total_amount row m0 row_disable">
                         <div class="float-left">
@@ -115,7 +101,7 @@
                         </div>
                     </div>
                 </div>
-                <a href="{% url 'cart:checkout' %}">
+                <a href="{% url 'cart:payment' %}">
                     <button type="button" value="submit" class="btn subs_btn form-control">Thanh toán</button>
                 </a>
             </div>
@@ -123,4 +109,6 @@
     </div>
 </section>
 <!--================End Shopping Cart Area =================-->
+
+
 {% endblock %}
