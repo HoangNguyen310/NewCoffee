@@ -1,11 +1,13 @@
 from django.shortcuts import render, redirect
 from django.views import View
 from product.models import Category, Product
+from .models import Slider
 
 
 class HomeController(View):
     def get(self, request):
         category = Category.objects.filter(active=1)
+        slide = Slider.objects.filter(active=1)
         product = Product.objects.filter(active=1)
 
         quantity = 0
@@ -18,6 +20,7 @@ class HomeController(View):
 
         return render(request, 'index.html', {
             'category': category,
+            'slide': slide,
             'product': product,
             'cart_quantity': quantity
         })

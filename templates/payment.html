@@ -30,8 +30,12 @@
                             <div class="billing_inner row">
                                 <div class="col-lg-12">
                                     <div class="form-group">
-                                        <label for="name">Họ tên<span style="color:red">*</span></label>
-                                        <input type="text" class="form-control" id="name" name="Name" value="{{ user.first_name }} {{ user.last_name }}" aria-describedby="name" required="">
+                                        <label for="name">Họ tên<span>*</span></label>
+                                        {% if user.first_name and user.last_name %}
+                                            <input type="text" class="form-control" id="name" name="Name" value="{{ user.first_name }} {{ user.last_name }}" aria-describedby="name" required="">
+                                        {% else %}
+                                            <input type="text" class="form-control" id="name" name="Name" aria-describedby="name" required="">
+                                        {% endif %}
                                     </div>
                                 </div>
                                 <div class="col-lg-12">

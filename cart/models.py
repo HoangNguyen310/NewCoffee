@@ -1,6 +1,5 @@
 from django.db import models
 from product.models import Product
-from user.models import CustomerUser
 
 
 class Cart(models.Model):
@@ -13,11 +12,10 @@ class Cart(models.Model):
 
 
 class CartItem(models.Model):
-    user = models.CharField(max_length=100, blank=True)
+    title = models.CharField(max_length=100)
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     price = models.IntegerField(default=0)
     quantity = models.IntegerField(default=0)
 
     def __str__(self):
-        return self.user
-
+        return self.title

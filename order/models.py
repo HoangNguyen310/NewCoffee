@@ -1,10 +1,9 @@
 from django.db import models
-from user.models import CustomerUser
 from cart.models import Cart
 
 
 class Order(models.Model):
-    user = models.ForeignKey(CustomerUser, on_delete=models.CASCADE)
+    user = models.CharField(max_length=100)
     cart = models.ForeignKey(Cart, on_delete=models.CASCADE)
     ship_address = models.CharField(max_length=255)
     order_description = models.TextField(blank=True)

@@ -120,15 +120,25 @@ class PaymentController(View):
         name = request.POST['Name']
         address = request.POST['Address']
         email = request.POST['Email']
+
         lst = []
 
         total = 0
         for key, value in cart.items():
+            item = CartItem()
+            item.title = value['name']
+            item.product_id = int(key)
+            item.quantity = value['quantity']
             if int(value['sale']) > 0:
+
+                item.price = int(value['sale'])
                 total += int(value['sale']) * int(value['quantity'])
             else:
+                item.price = int(value['price'])
                 total += int(value['price']) * int(value['quantity'])
-            lst.append(value['name'] + ' - ' + value['quantity'])
+            item.save()
+            lst.append(value['name'] + ' - ' + str(value['quantity']))
+
         c = Cart()
         c.user = name
         c.total = total

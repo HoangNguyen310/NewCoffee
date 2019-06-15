@@ -46,8 +46,9 @@ class RegisterController(View):
             return redirect('user:register')
 
 
-class InfoController(LoginRequiredMixin, View):
-    login_url = 'user:login'
+# class InfoController(LoginRequiredMixin, View):
+class InfoController(View):
+    # login_url = 'user:login'
 
     def get(self, request):
         return render(request, 'info.html')
