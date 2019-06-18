@@ -41,7 +41,9 @@ class RegisterController(View):
             CustomerUser.objects.create_user(
                 username=username, email=email, password=password, phone=phone, address=address
             )
-            return redirect('user:login')
+            user = authenticate(username=username, password=password)
+            login(request, user)
+            return redirect('home:index')
         except:
             return redirect('user:register')
 
