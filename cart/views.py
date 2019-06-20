@@ -10,25 +10,31 @@ cart = {}
 class CartController(View):
     def get(self, request):
         category = Category.objects.filter(active=1)
-        cart = request.session['cart']
-
         quantity = 0
-        for key, value in cart.items():
-            quantity += int(value['quantity'])
+        try:
+            cart = request.session['cart']
 
-        total = 0
-        if len(cart) > 0:
             for key, value in cart.items():
-                if int(value['sale']) > 0:
-                    total += int(value['sale']) * int(value['quantity'])
-                else:
-                    total += int(value['price']) * int(value['quantity'])
-            return render(request, 'cart.html', {
-                'category': category,
-                'cart_quantity': quantity,
-                'total': total,
-            })
-        else:
+                quantity += int(value['quantity'])
+
+            total = 0
+            if len(cart) > 0:
+                for key, value in cart.items():
+                    if int(value['sale']) > 0:
+                        total += int(value['sale']) * int(value['quantity'])
+                    else:
+                        total += int(value['price']) * int(value['quantity'])
+                return render(request, 'cart.html', {
+                    'category': category,
+                    'cart_quantity': quantity,
+                    'total': total,
+                })
+            else:
+                return render(request, 'empty_cart.html', {
+                    'category': category,
+                    'cart_quantity': quantity
+                })
+        except:
             return render(request, 'empty_cart.html', {
                 'category': category,
                 'cart_quantity': quantity
