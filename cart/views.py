@@ -3,6 +3,7 @@ from django.core.mail import send_mail
 from django.views import View
 from product.models import Category
 from cart.models import *
+from order.models import Order
 
 cart = {}
 
@@ -126,29 +127,43 @@ class PaymentController(View):
         name = request.POST['Name']
         address = request.POST['Address']
         email = request.POST['Email']
+        note = request.POST['Note']
 
         lst = []
 
+        c = Cart()
         total = 0
         for key, value in cart.items():
+            if int(value['sale']) > 0:
+                total += int(value['sale']) * int(value['quantity'])
+            else:
+                total += int(value['price']) * int(value['quantity'])
+            lst.append(value['name'] + ' - ' + str(value['quantity']))
+
+        c.user = name
+        c.total = total
+        c.save()
+
+        i = Cart.objects.last()
+        for key, value in cart.items():
             item = CartItem()
-            item.title = value['name']
+            item.title = i.user
             item.product_id = int(key)
             item.quantity = value['quantity']
             if int(value['sale']) > 0:
 
                 item.price = int(value['sale'])
-                total += int(value['sale']) * int(value['quantity'])
             else:
                 item.price = int(value['price'])
-                total += int(value['price']) * int(value['quantity'])
             item.save()
-            lst.append(value['name'] + ' - ' + str(value['quantity']))
 
-        c = Cart()
-        c.user = name
-        c.total = total
-        c.save()
+        order = Order()
+        order.user = i.user
+        order.product = lst
+        order.ship_address = address
+        order.description = note
+        order.save()
+
 
         message = 'Xin chào {0}, đơn hàng của bạn đã được đặt thành công.\nCác món bạn đã đặt là {1}.\nTổng giá trị đơn hàng là {2} vnđ (chưa bao gồm phí vận chuyển).\nĐịa chỉ giao hàng: {3}.\nCảm ơn quí khách đã sử dụng dịch vụ.'.format(name, lst, total, address)
 
